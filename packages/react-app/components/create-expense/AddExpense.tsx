@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlignLeft, Euro, Calendar, Users, Camera, Edit } from 'lucide-react';
+import { AlignLeft, Euro, Calendar, Users, Camera, Edit, PlusCircle, DollarSign } from 'lucide-react';
 
 interface ExpenseData {
   description: string;
@@ -29,53 +29,70 @@ const AddExpense: React.FC = () => {
   };
 
   return (
-    <div className=" p-4 flex flex-col h-full w-screen">
-
-      <div className="mb-6">
-        <label className="text-gray-400 mb-2 block">With you and:</label>
+    <div className="p-6 flex flex-col h-full w-screen bg-base-100 space-y-6">
+      <div>
+        <label className="text-base-content opacity-70 mb-3 block text-lg">With you and:</label>
         <div className="flex items-center">
-          <div className="w-8 h-8 bg-gray-700 rounded-full mr-2"></div>
-          <span className="text-gray-300">Robert</span>
+          <div className="w-12 h-12 bg-neutral rounded-full mr-3"></div>
+          <span className="text-base-content text-xl font-semibold">Robert</span>
         </div>
       </div>
 
-      <div className="space-y-4 flex-grow">
-        <div className="flex items-center border-b border-gray-700 py-2">
-          <AlignLeft size={20} className="text-gray-500 mr-2" />
+      <div className="space-y-6 flex-grow">
+        <div className="flex items-center border-b-2 border-base-content border-opacity-20 py-3">
+          <AlignLeft size={24} className="text-base-content opacity-50 mr-3" />
           <input
             type="text"
             name="description"
             placeholder="Enter a description"
             value={expenseData.description}
             onChange={handleChange}
-            className="bg-transparent flex-grow outline-none text-gray-300 placeholder-gray-600"
+            className="bg-transparent flex-grow outline-none text-base-content placeholder-base-content placeholder-opacity-50 text-lg"
           />
         </div>
 
-        <div className="flex items-center border-b border-gray-700 py-2">
-          <Euro size={20} className="text-gray-500 mr-2" />
+        <div className="flex items-center border-b-2 border-base-content border-opacity-20 py-3">
+          <DollarSign size={24} className="text-base-content opacity-50 mr-3" />
           <input
             type="number"
             name="amount"
             placeholder="0,00"
             value={expenseData.amount}
             onChange={handleChange}
-            className="bg-transparent flex-grow outline-none text-gray-300 placeholder-gray-600"
+            className="bg-transparent flex-grow outline-none text-base-content placeholder-base-content placeholder-opacity-50 text-lg"
           />
         </div>
 
-        <div className="bg-secondary rounded-lg p-3 text-gray-300">
+        <div className="badge badge-neutral">
           {expenseData.paidBy}
         </div>
       </div>
 
-      <div className="flex justify-between text-gray-500 pt-4 border-t border-gray-700">
-        <button className="flex items-center">
-          <Calendar size={18} className="mr-1" />
-          <span className="text-sm">Today</span>
+      {/* <div className="flex justify-between text-base-content opacity-70 pt-4 border-t-2 border-base-content border-opacity-20">
+        <button className="flex items-center text-lg">
+          <Calendar size={22} className="mr-2" />
+          <span>Today</span>
         </button>
- 
-      </div>
+        <button className="flex items-center text-lg">
+          <Users size={22} className="mr-2" />
+          <span>No group</span>
+        </button>
+        <button className="flex items-center text-lg">
+          <Camera size={22} />
+        </button>
+        <button className="flex items-center text-lg">
+          <Edit size={22} />
+        </button>
+      </div> */}
+
+      {/* Add Expense Button */}
+      <button 
+        onClick={handleSave}
+        className="btn btn-primary btn-lg w-full flex items-center justify-center text-lg"
+      >
+        <PlusCircle size={24} className="" />
+        Add Expense
+      </button>
     </div>
   );
 };
