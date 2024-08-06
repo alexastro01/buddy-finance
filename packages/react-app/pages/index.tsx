@@ -18,6 +18,7 @@ export default function Home() {
     const [signingLoading, setSigningLoading] = useState(false);
     const [userOwnedNFTs, setUserOwnedNFTs] = useState<string[]>([]);
     const [tx, setTx] = useState<any>(undefined);
+    const [error, setError] = useState();
 
     useEffect(() => {
         getUserAddress();
@@ -39,7 +40,8 @@ export default function Home() {
             try {
                 const tx = await sendCUSD(address, "0.1");
                 setTx(tx);
-            } catch (error) {
+            } catch (error: any) {
+                setError(error.message)
                 console.log(error);
             } finally {
                 setSigningLoading(false);
@@ -72,6 +74,11 @@ export default function Home() {
         }
     }
 
+
+    useEffect(() => {
+   console.log(address)
+    }, [address])
+
     return (
         <div className="flex flex-col justify-center items-center">
             {!address && (
@@ -100,6 +107,7 @@ export default function Home() {
                             )}
                         </p>
                     )}
+                 
                     <div className="w-full px-3 mt-7">
                         <PrimaryButton
                             loading={signingLoading}
@@ -150,6 +158,12 @@ export default function Home() {
                             widthFull
                         />
                     </div>
+
+                    {
+                        error && <p className="text-sm">
+                            {error}
+                        </p>
+                    }
                 </>
             )}
         </div>
